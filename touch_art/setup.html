@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from https://v2.fiveplay.lol/touch_art/setup.html by HTTrack Website Copier/3.x [XR&CO], Tue, 17 Nov 2026 02:48:09 GMT -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Touch controls & viewport setup</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#080b0e;color:#ecf1f5;font:15px system-ui;overflow:hidden}
+#viewport-preview{position:fixed;pointer-events:none;border:2px dashed #526677;background:#111b24;display:grid;place-items:center;color:#8098aa;text-align:center}
+#setup-bar{position:fixed;z-index:30;left:12px;top:12px;right:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;background:#10171ff2;border:1px solid #40515f;border-radius:10px}
+button,select,input{font:inherit}button,select{padding:10px;color:#ecf1f5;background:#253746;border:1px solid #526677;border-radius:6px;cursor:pointer}
+#status{font-size:13px;color:#b4c5d3}dialog{color:inherit;background:#10171f;border:1px solid #526677;border-radius:12px;width:min(440px,95vw);max-height:90vh;overflow:auto}dialog::backdrop{background:#0009}
+label{display:grid;gap:8px;margin:20px 0}input{width:100%}.actions{display:flex;gap:8px;justify-content:flex-end}
+body.editing #setup-bar{display:none}
+#tc-panel{top:var(--setup-bar-bottom,120px)!important;bottom:0!important;height:auto!important;left:auto!important;right:0!important;width:min(100vw,460px)!important}
+#viewport-dialog{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;overflow:hidden}
+#viewport-dialog[open]{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,38%)}
+#viewport-stage{min-width:0;min-height:0;display:flex;flex-direction:column;padding:12px;gap:10px;background:#080b0e}
+#viewport-stage p{margin:0;text-align:center;font-size:13px;color:#b4c5d3}
+#screen-fit{flex:1;min-height:0;min-width:0;display:grid;place-items:center}
+#screen-preview{position:relative;flex:none;background:#030405;outline:1px solid #526677;overflow:hidden}
+#screen-viewport{position:absolute;border:2px solid #7cc7ff;background:#1e3e53;display:grid;place-items:center;font-size:12px;text-align:center;color:#d7efff}
+#viewport-options{min-width:0;min-height:0;overflow:auto;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom));border-left:1px solid #40515f}
+#viewport-options h2{margin-top:0}#viewport-options label{margin:12px 0;gap:4px}
+#viewport-options .actions{position:sticky;bottom:-16px;background:#10171f;padding:10px 0}
+body.viewport-editing #setup-bar,body.viewport-editing #tc-panel,body.viewport-editing #viewport-preview{visibility:hidden}
+@media(orientation:portrait){#viewport-dialog[open]{grid-template-columns:1fr;grid-template-rows:minmax(0,42fr) minmax(0,58fr)}#viewport-options{border-left:0;border-top:1px solid #40515f}}
+@media(orientation:landscape){
+ #setup-bar{left:8px;right:auto;top:8px;width:max-content;max-width:calc(100vw - min(50vw,460px) - 20px);padding:6px;gap:6px;flex-wrap:wrap;border-radius:6px}
+ #setup-bar button{flex:none;min-height:36px;padding:6px 10px;font-size:13px}
+ #status{flex-basis:100%;max-width:340px;font-size:12px}
+ #tc-panel{top:0!important;width:min(50vw,460px)!important}
+}
+</style>
+<div id="viewport-preview"><span>Game viewport<br>Controls can be placed anywhere on the screen</span></div>
+<nav id="setup-bar" aria-label="Setup">
+ <button id="return">Back to launcher</button><button id="controls">Touch settings</button><button id="layout">Edit layout</button><button id="viewport">Game viewport</button>
+ <span id="status" role="status">Loading touch controls…</span>
+</nav>
+<dialog id="viewport-dialog">
+ <section id="viewport-stage" aria-label="Full screen preview">
+  <p>Full screen preview · scaled to fit</p>
+  <div id="screen-fit"><div id="screen-preview"><div id="screen-viewport">Game viewport</div></div></div>
+ </section>
+ <section id="viewport-options" aria-label="Viewport settings">
+ <h2 tabindex="-1" autofocus>Game viewport</h2><p id="orientation"></p>
+ <p>16:9 fit and Custom keep the game aspect ratio. Position is a percentage of the remaining space.</p>
+ <label>Mode<select id="mode"><option value="full">Full screen</option><option value="fit">Fit 16:9</option><option value="custom">Custom 16:9</option></select></label>
+ <label>Size <output id="scale-value"></output><input id="scale" type="range" min="25" max="100" step="1"></label>
+ <label>Horizontal position <output id="x-value"></output><input id="x" type="range" min="0" max="100" step="1"></label>
+ <label>Vertical position <output id="y-value"></output><input id="y" type="range" min="0" max="100" step="1"></label>
+ <div class="actions"><button id="cancel">Cancel</button><button id="save">Save viewport</button></div>
+ </section>
+</dialog>
+<script src="viewport3860.js?v=1"></script>
+<script src="../touch_controls5d77.js?v=menu-gesture-20261015"></script>
+<script src="setup8fa7.js?v=mobile-preview-2"></script>
+
+<!-- Mirrored from https://v2.fiveplay.lol/touch_art/setup.html by HTTrack Website Copier/3.x [XR&CO], Tue, 17 Nov 2026 02:48:09 GMT -->
+</html>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"10e26e5be9e74c99b77d206e68b3f373","r":1,"spa":2}' crossorigin="anonymous"></script>
